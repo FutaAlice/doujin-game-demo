@@ -9,7 +9,10 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/src/entry/entry",
-            "args": [],
+            "args": [
+                "-r",
+                "/home/futa/Work/doujin-game-demo/resource"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

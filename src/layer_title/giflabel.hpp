@@ -7,16 +7,20 @@ class GIFLabel :
     public QLabel
 {
 public:
-    GIFLabel(QWidget *parentWidget, QString filename) :
+    GIFLabel(QWidget *parentWidget) :
         QLabel(parentWidget)
     {
-        movie_->start();
-        setMovie(movie_);
-        show();
     }
     ~GIFLabel()
     {
         delete movie_;
+    }
+    void load(QString filename)
+    {
+        delete movie_;
+        movie_ = new QMovie(filename);
+        movie_->start();
+        setMovie(movie_);
     }
 protected:
     virtual void resizeEvent(QResizeEvent *e)
@@ -25,5 +29,5 @@ protected:
         QLabel::resizeEvent(e);
     }
 private:
-    QMovie *movie_;
+    QMovie *movie_ { nullptr };
 };

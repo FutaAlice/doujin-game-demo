@@ -12,7 +12,7 @@ file(GLOB HEADER_FILES "./*.h")
 file(GLOB FORM_FILES "./*.ui")
 file(GLOB RESOURCE_FILES "./*.qrc")
 
-include_directories(../)
+include_directories(../ ../../3rdparty)
 
 add_executable(${PROJECT_NAME}
     ${HEADER_FILES}

@@ -10,7 +10,8 @@ Title::Title(QWidget *parent/* = nullptr*/) :
 {
     ui_->setupUi(this);
     
-    title_gif_ = new GIFLabel(this, "/home/futa/Work/doujin-game-demo/resource/background/title_background.gif");
+    title_gif_ = new GIFLabel(this);
+    title_gif_->load("/home/futa/Work/doujin-game-demo/resource/background/title_background.gif");
 }
 
 Title::~Title()
