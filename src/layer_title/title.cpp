@@ -1,34 +1,8 @@
-#include <QLabel>
-#include <QMovie>
 #include <QVBoxLayout>
 #include <QResizeEvent>
+#include "giflabel.hpp"
 #include "title.h"
 #include "ui_title.h"
-
-class GIFContainer :
-    public QLabel
-{
-public:
-    GIFContainer(QWidget *parentWidget, QString filename) :
-        QLabel(parentWidget)
-    {
-        movie_->start();
-        setMovie(movie_);
-        show();
-    }
-    ~GIFContainer()
-    {
-        delete movie_;
-    }
-protected:
-    virtual void resizeEvent(QResizeEvent *e)
-    {
-        movie_->setScaledSize(e->size());
-        QLabel::resizeEvent(e);
-    }
-private:
-    QMovie *movie_;
-};
 
 Title::Title(QWidget *parent/* = nullptr*/) :
     QWidget(parent),
@@ -36,7 +10,7 @@ Title::Title(QWidget *parent/* = nullptr*/) :
 {
     ui_->setupUi(this);
     
-    title_gif_ = new GIFContainer(this, "/home/futa/Work/doujin-game-demo/resource/background/title_background.gif");
+    title_gif_ = new GIFLabel(this, "/home/futa/Work/doujin-game-demo/resource/background/title_background.gif");
 }
 
 Title::~Title()

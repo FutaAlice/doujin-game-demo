@@ -8,7 +8,7 @@ set(CMAKE_AUTORCC on)
 find_package(Qt5 REQUIRED Core Gui Widgets)
 
 file(GLOB SRC_FILES "./*.cpp")
-file(GLOB HEADER_FILES "./*.h")
+file(GLOB HEADER_FILES "./*.h" "./*.hpp")
 file(GLOB FORM_FILES "./*.ui")
 file(GLOB RESOURCE_FILES "./*.qrc")
 
