@@ -6,6 +6,7 @@
         "qvboxlayout": "cpp",
         "qimage": "cpp",
         "qlabel": "cpp",
-        "qmovie": "cpp"
+        "qmovie": "cpp",
+        "filesystem": "cpp"
     }
 }

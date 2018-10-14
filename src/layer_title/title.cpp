@@ -1,8 +1,11 @@
 #include <QVBoxLayout>
 #include <QResizeEvent>
+#include <QDebug>
 #include "giflabel.hpp"
 #include "title.h"
 #include "ui_title.h"
+
+extern QString resource_dir;
 
 Title::Title(QWidget *parent/* = nullptr*/) :
     QWidget(parent),
@@ -11,7 +14,7 @@ Title::Title(QWidget *parent/* = nullptr*/) :
     ui_->setupUi(this);
     
     title_gif_ = new GIFLabel(this);
-    title_gif_->load("/home/futa/Work/doujin-game-demo/resource/background/title_background.gif");
+    title_gif_->load(resource_dir + "/background/title_background.gif");
 }
 
 Title::~Title()
