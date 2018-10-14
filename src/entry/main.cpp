@@ -1,10 +1,12 @@
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QWidget>
-#include <QtCore/QDebug>
+#include <QApplication>
+#include <QWidget>
+#include <QDebug>
+#include "mainwidget.h"
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     QApplication app(argc, argv);
-    QWidget widget;
+    MainWidget widget;
     widget.show();
     qDebug() << "doujin game demo.";
     return app.exec();

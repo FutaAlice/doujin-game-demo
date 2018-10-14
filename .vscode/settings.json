@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "qapplication": "cpp"
+        "qapplication": "cpp",
+        "qwidget": "cpp",
+        "qdebug": "cpp",
+        "qvboxlayout": "cpp",
+        "qimage": "cpp",
+        "qlabel": "cpp",
+        "qmovie": "cpp"
     }
 }

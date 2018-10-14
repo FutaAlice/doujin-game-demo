@@ -4,6 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "/opt/Qt5.11.2/5.11.2/gcc_64/include",
+                "/opt/Qt5.11.2/5.11.2/gcc_64/include/QtCore",
+                "/opt/Qt5.11.2/5.11.2/gcc_64/include/QtGui",
+                "/opt/Qt5.11.2/5.11.2/gcc_64/include/QtWidgets",
                 "${workspaceFolder}/**"
             ],
             "defines": [],
