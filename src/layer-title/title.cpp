@@ -40,10 +40,11 @@ Title::Title(QWidget *parent/* = nullptr*/) :
     btn_ctn_ = new QWidget(this);
     auto *btn_layout = new QVBoxLayout(btn_ctn_);
     btn_ctn_->setLayout(btn_layout);
-    btn_ctn_->resize(100, 200);
+    btn_ctn_->resize(100, 240);
 
     btn_layout->addWidget(getTitleBtn("/button/btn_start.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_continue.png", 4));
+    btn_layout->addWidget(getTitleBtn("/button/btn_setting.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_about.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_debug.png", 4));
 }
