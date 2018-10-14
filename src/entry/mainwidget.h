@@ -13,10 +13,11 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
+#include <layer_title/title.h>
+
 class MainWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit MainWidget(QWidget *parent = 0);
     ~MainWidget();
@@ -27,5 +28,5 @@ public:
     void setPresentWidget(QWidget *);
 
 private:
-    QHBoxLayout *main_layout_ { nullptr };
+    Title title { this };
 };

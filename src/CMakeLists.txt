@@ -1,1 +1,5 @@
 add_subdirectory(entry)
+add_subdirectory(layer_title)
+add_subdirectory(layer_config)
+add_subdirectory(layer_avg)
+add_subdirectory(layer_stg)

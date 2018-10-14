@@ -1,4 +1,4 @@
-project(entry)
+project(layer_title)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC on)
@@ -12,9 +12,9 @@ file(GLOB HEADER_FILES "./*.h")
 file(GLOB FORM_FILES "./*.ui")
 file(GLOB RESOURCE_FILES "./*.qrc")
 
-include_directories(../)
+add_definitions(-DTITLE_LIBRARY)
 
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME} SHARED
     ${HEADER_FILES}
     ${SRC_FILES}
     ${FORM_FILES}
@@ -23,5 +23,4 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     Qt5::Core Qt5::Gui Qt5::Widgets
-    layer_title
 )
