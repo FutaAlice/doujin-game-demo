@@ -1,4 +1,4 @@
-project(layer_title)
+project(layer-title)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC on)
@@ -13,6 +13,8 @@ file(GLOB FORM_FILES "./*.ui")
 file(GLOB RESOURCE_FILES "./*.qrc")
 
 add_definitions(-DTITLE_LIBRARY)
+
+include_directories(../ ../../3rdparty)
 
 add_library(${PROJECT_NAME} SHARED
     ${HEADER_FILES}

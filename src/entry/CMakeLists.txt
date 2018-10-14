@@ -23,9 +23,6 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     Qt5::Core Qt5::Gui Qt5::Widgets
-    layer_title
+    cli-args
+    layer-title
 )
-
-if (UNIX)
-    target_link_libraries(${PROJECT_NAME} stdc++fs)
-endif ()

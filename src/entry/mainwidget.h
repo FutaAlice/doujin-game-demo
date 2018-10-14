@@ -13,7 +13,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
-#include <layer_title/title.h>
+#include <layer-title/title.h>
 
 class MainWidget : public QWidget
 {
