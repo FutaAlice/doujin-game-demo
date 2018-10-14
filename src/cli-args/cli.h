@@ -1,10 +1,17 @@
 #pragma once
+#include <QtCore/qglobal.h>
 #include <QString>
+
+#if defined(CLI_LIBRARY)
+#  define CLISHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define CLISHARED_EXPORT Q_DECL_IMPORT
+#endif
 
 namespace cli {
 
-extern QString resource_dir;
+extern CLISHARED_EXPORT QString resource_dir;
 
-bool init(int argc, char **argv);
+CLISHARED_EXPORT bool init(int argc, char **argv);
 
 } // namespace cli

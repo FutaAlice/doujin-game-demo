@@ -7,6 +7,8 @@ file(GLOB HEADER_FILES "./*.h")
 
 include_directories(../../3rdparty)
 
+add_definitions(-DCLI_LIBRARY)
+
 add_library(${PROJECT_NAME} SHARED
     ${SRC_FILES}
     ${HEADER_FILES}
