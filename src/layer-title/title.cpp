@@ -6,8 +6,6 @@
 #include "title.h"
 #include "ui_title.h"
 
-extern QString resource_dir;
-
 Title::Title(QWidget *parent/* = nullptr*/) :
     QWidget(parent),
     ui_(new Ui::Title)
