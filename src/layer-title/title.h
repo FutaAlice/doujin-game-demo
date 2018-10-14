@@ -23,4 +23,5 @@ protected:
 private:
     Ui::Title *ui_;
     GIFLabel *title_gif_;
+    QWidget *btn_ctn_;
 };

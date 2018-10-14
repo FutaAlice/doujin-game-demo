@@ -25,7 +25,8 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent *e)
     {
-        movie_->setScaledSize(e->size());
+        if (movie_)
+            movie_->setScaledSize(e->size());
         QLabel::resizeEvent(e);
     }
 private:
