@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2018
  * 
  */
+#include <cmath>
 #include <chrono>
 #include <future>
 #include <QDebug>
@@ -55,10 +56,20 @@ void MainWidget::setPresentWidget(Layer layer)
             setting.raise();
             setting.show();
             layerFade = std::async(std::launch::async, [this] {
-                for (int x = width(); x != 0;x = setting.pos().x()) {
-                    setting.move(std::max(x - 1, 0), 0);
+                auto easeFunc = [](double x) {
+                    return x == 0 ? 0 : x == 1 ? 1 :
+                        -pow(2,10 * x - 10) * sin((x * 10 - 10.75) * ((2 * 3.14)/ 3));
+                };
+                for (int i = 0; i <= 1000; ++i) {
+                    double x = 1.0f * i / 1000;
+                    double w = easeFunc(1.0 - x) * width();
+                    setting.move((int)w, 0);
                     std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 }
+                // for (int x = width(); x != 0;x = setting.pos().x()) {
+                //     setting.move(std::max(x - 1, 0), 0);
+                //     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                // }
             });
             break;
         case Layer::Null:
