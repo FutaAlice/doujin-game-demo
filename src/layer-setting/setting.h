@@ -13,6 +13,8 @@ class SETTINGSHARED_EXPORT Setting :
 public:
     explicit Setting(QWidget *parent = nullptr);
     ~Setting();
+protected:
+    void paintEvent(QPaintEvent *);
 private:
     Ui::Setting *ui_;
 };

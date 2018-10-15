@@ -25,4 +25,11 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Core Qt5::Gui Qt5::Widgets
     cli-args
     layer-title
+    layer-setting
 )
+
+if (UNIX)
+    target_link_libraries (${PROJECT_NAME}
+        pthread
+    )
+endif ()

@@ -16,6 +16,14 @@
 #include <layer-title/title.h>
 #include <layer-setting/setting.h>
 
+enum class Layer {
+    Title,
+    Setting,
+    AVG,
+    STG,
+    Null,
+};
+
 class MainWidget : public QWidget
 {
     Q_OBJECT
@@ -26,7 +34,13 @@ public:
 public:
     void setWindowSize(const QSize &);
     void setWindowSize(int w, int h);
-    void setPresentWidget(QWidget *);
+    void setPresentWidget(Layer);
+
+public slots:
+    void presentSettingLayer();
+
+protected:
+    virtual void resizeEvent(QResizeEvent *);
 
 private:
     Title title { this };

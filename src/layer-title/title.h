@@ -17,6 +17,9 @@ public:
     explicit Title(QWidget *parent = nullptr);
     ~Title();
 
+signals:
+    void onSettingBtnClicked();
+
 protected:
     virtual void resizeEvent(QResizeEvent *);
 

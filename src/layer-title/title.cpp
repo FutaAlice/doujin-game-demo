@@ -44,9 +44,12 @@ Title::Title(QWidget *parent/* = nullptr*/) :
 
     btn_layout->addWidget(getTitleBtn("/button/btn_start.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_continue.png", 4));
-    btn_layout->addWidget(getTitleBtn("/button/btn_setting.png", 4));
+    auto btn = getTitleBtn("/button/btn_setting.png", 4);
+    btn_layout->addWidget(btn);
     btn_layout->addWidget(getTitleBtn("/button/btn_about.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_debug.png", 4));
+
+    connect(btn, SIGNAL(clicked()), this, SIGNAL(onSettingBtnClicked()));
 }
 
 Title::~Title()
