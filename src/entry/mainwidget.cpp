@@ -21,7 +21,7 @@ MainWidget::MainWidget(QWidget *parent) :
     setPresentWidget(Layer::Title);
 
     // connections with title layer
-    // connect(&title, SIGNAL(onSettingBtnClicked), this, SLOT(presentSettingLayer()));
+    connect(&title, SIGNAL(onSettingBtnClicked()), this, SLOT(presentSettingLayer()));
 }
 
 MainWidget::~MainWidget()
@@ -42,7 +42,7 @@ void MainWidget::setPresentWidget(Layer layer)
 {
     static std::future<void> layerFade;
     if (layerFade.valid())
-        layerFade.wait();
+        return;
 
     switch (layer) {
         case Layer::Title:
@@ -69,7 +69,7 @@ void MainWidget::setPresentWidget(Layer layer)
 
 void MainWidget::presentSettingLayer()
 {
-    setPresentWidget(Layer::Title);
+    setPresentWidget(Layer::Setting);
 }
 
 void MainWidget::resizeEvent(QResizeEvent *e)
