@@ -14,6 +14,7 @@
 #include <QVBoxLayout>
 
 #include <layer-title/title.h>
+#include <layer-setting/setting.h>
 
 class MainWidget : public QWidget
 {
@@ -29,4 +30,5 @@ public:
 
 private:
     Title title { this };
+    Setting setting { this };
 };

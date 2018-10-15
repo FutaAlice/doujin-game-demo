@@ -1,6 +1,6 @@
 add_subdirectory(entry)
 add_subdirectory(layer-title)
-add_subdirectory(layer-config)
+add_subdirectory(layer-setting)
 add_subdirectory(layer-avg)
 add_subdirectory(layer-stg)
 add_subdirectory(cli-args)

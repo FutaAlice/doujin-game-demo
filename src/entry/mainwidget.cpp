@@ -15,7 +15,7 @@ MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent)
 {
     resize(800, 600);
-    setPresentWidget(&title);
+    setPresentWidget(&setting);
 }
 
 MainWidget::~MainWidget()
