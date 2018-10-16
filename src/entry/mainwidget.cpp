@@ -14,6 +14,8 @@
 #include <mutex>
 #include <future>
 #include <QDebug>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QResizeEvent>
 #include "mainwidget.h"
 
@@ -38,21 +40,19 @@ MainWidget::~MainWidget()
 
 void MainWidget::setWindowSize(const QSize &size)
 {
-    setWindowFlags(Qt::SubWindow);
     showNormal();
     setFixedSize(size);
 }
 
 void MainWidget::setWindowSize(int w, int h)
 {
-    setWindowFlags(Qt::SubWindow);
     showNormal();
     setFixedSize(w, h);
 }
 
 void MainWidget::setFullScreen()
 {
-    setWindowFlags(Qt::Window);
+    setWindowSize(QApplication::desktop()->size());
     showFullScreen();
 }
 
