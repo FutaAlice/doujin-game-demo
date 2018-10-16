@@ -14,6 +14,8 @@ class SETTINGSHARED_EXPORT Setting :
 public:
     explicit Setting(QWidget *parent = nullptr);
     ~Setting();
+signals:
+    void back();
 protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void resizeEvent(QResizeEvent *);

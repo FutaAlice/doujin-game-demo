@@ -38,6 +38,7 @@ public:
 
 public slots:
     void presentSettingLayer();
+    void hideSettingLayer();
 
 protected:
     virtual void resizeEvent(QResizeEvent *);

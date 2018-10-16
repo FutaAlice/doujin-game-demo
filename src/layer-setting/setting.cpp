@@ -10,6 +10,7 @@ Setting::Setting(QWidget *parent/* = nullptr*/) :
     ui_(new Ui::Setting)
 {
     ui_->setupUi(this);
+    connect(ui_->btn_back, SIGNAL(clicked()), this, SIGNAL(back()));
 }
 
 Setting::~Setting()

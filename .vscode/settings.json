@@ -58,6 +58,7 @@
         "qpushbutton": "cpp",
         "qpainter": "cpp",
         "qstyleoption": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "thread": "cpp"
     }
 }
