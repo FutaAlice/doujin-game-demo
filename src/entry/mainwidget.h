@@ -32,11 +32,11 @@ public:
     ~MainWidget();
 
 public:
-    void setWindowSize(const QSize &);
-    void setWindowSize(int w, int h);
     void setPresentWidget(Layer);
 
 public slots:
+    void setWindowSize(const QSize &);
+    void setWindowSize(int w, int h);
     void presentSettingLayer();
     void hideSettingLayer();
 

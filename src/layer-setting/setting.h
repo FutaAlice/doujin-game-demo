@@ -14,8 +14,12 @@ class SETTINGSHARED_EXPORT Setting :
 public:
     explicit Setting(QWidget *parent = nullptr);
     ~Setting();
+protected slots:
+    void changeScreenSize();
 signals:
-    void back();
+    void sigHide();
+    void sigScreenSize(QSize);
+    void sigFullScreen();
 protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void resizeEvent(QResizeEvent *);

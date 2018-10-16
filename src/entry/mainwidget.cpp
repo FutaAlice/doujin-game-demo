@@ -27,7 +27,8 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(&title, SIGNAL(onSettingBtnClicked()), this, SLOT(presentSettingLayer()));
 
     // connections with setting layer
-    connect(&setting, SIGNAL(back()), this, SLOT(hideSettingLayer()));
+    connect(&setting, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
+    connect(&setting, SIGNAL(sigScreenSize(QSize)), this, SLOT(setWindowSize(QSize)));
 }
 
 MainWidget::~MainWidget()
