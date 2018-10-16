@@ -29,6 +29,7 @@ MainWidget::MainWidget(QWidget *parent) :
     // connections with setting layer
     connect(&setting, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
     connect(&setting, SIGNAL(sigScreenSize(QSize)), this, SLOT(setWindowSize(QSize)));
+    connect(&setting, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
 }
 
 MainWidget::~MainWidget()
@@ -37,12 +38,22 @@ MainWidget::~MainWidget()
 
 void MainWidget::setWindowSize(const QSize &size)
 {
+    setWindowFlags(Qt::SubWindow);
+    showNormal();
     setFixedSize(size);
 }
 
 void MainWidget::setWindowSize(int w, int h)
 {
+    setWindowFlags(Qt::SubWindow);
+    showNormal();
     setFixedSize(w, h);
+}
+
+void MainWidget::setFullScreen()
+{
+    setWindowFlags(Qt::Window);
+    showFullScreen();
 }
 
 void MainWidget::setPresentWidget(Layer layer)
