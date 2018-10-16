@@ -1,5 +1,6 @@
 #pragma once
 #include <QWidget>
+#include <QLabel>
 #include "setting_global.h"
 
 namespace Ui {
@@ -14,7 +15,8 @@ public:
     explicit Setting(QWidget *parent = nullptr);
     ~Setting();
 protected:
-    void paintEvent(QPaintEvent *);
+    virtual void paintEvent(QPaintEvent *);
+    virtual void resizeEvent(QResizeEvent *);
 private:
     Ui::Setting *ui_;
 };

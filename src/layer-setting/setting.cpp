@@ -1,8 +1,6 @@
 #include <QString>
-#include <QPushButton>
-#include <QPaintEvent>
-#include <QPainter>
-#include <QStyleOption>
+#include <QPixmap>
+#include <QResizeEvent>
 #include <cli-args/cli.h>
 #include "setting.h"
 #include "ui_setting.h"
@@ -11,10 +9,7 @@ Setting::Setting(QWidget *parent/* = nullptr*/) :
     QWidget(parent),
     ui_(new Ui::Setting)
 {
-    auto qss = QString("background-image: url(%1)")
-        .arg(cli::resource_dir + "/background/setting_bg.png");
-    setStyleSheet(qss);
-    new QPushButton(this);
+    ui_->setupUi(this);
 }
 
 Setting::~Setting()
@@ -24,8 +19,10 @@ Setting::~Setting()
 
 void Setting::paintEvent(QPaintEvent *e)
 {
-    QPainter p(this);
-    QStyleOption opt;
-    opt.init(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void Setting::resizeEvent(QResizeEvent *e)
+{
+    ui_->bg->setPixmap(QPixmap(cli::resource_dir + "/background/setting_bg.png").scaled(size()));
+    ui_->bg->resize(e->size());
 }
