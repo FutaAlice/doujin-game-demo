@@ -68,19 +68,21 @@ void MainWidget::setPresentWidget(Layer layer)
         case Layer::Title:
             setPresentWidget(Layer::Null);
             title.raise();
+            title.showBtn();
             title.show();
             break;
         case Layer::Setting:
-            setting.raise();
+            title.hideBtn();
             setting.show();
+            setting.raise();
             t = std::thread([&] {
                 std::lock_guard<std::mutex> lock (m, std::adopt_lock);
                 auto easeFunc = [](double x) {
                     return x == 0 ? 0 : x == 1 ? 1 :
                         -pow(2,10 * x - 10) * sin((x * 10 - 10.75) * ((2 * 3.14)/ 3));
                 };
-                for (int i = 0; i <= 1000; ++i) {
-                    double x = 1.0f * i / 1000;
+                for (int i = 0; i <= 300; ++i) {
+                    double x = 1.0f * i / 300;
                     double w = easeFunc(1.0 - x) * width();
                     setting.move((int)w, 0);
                     std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -113,14 +115,15 @@ void MainWidget::hideSettingLayer()
     if (setting.pos() != QPoint(0, 0))
         return;
     
+    title.showBtn();
     std::thread t([&] {
         std::lock_guard<std::mutex> lock (m, std::adopt_lock);
         auto easeFunc = [](double x) {
             return x == 0 ? 0 : x == 1 ? 1 :
                 -pow(2,10 * x - 10) * sin((x * 10 - 10.75) * ((2 * 3.14)/ 3));
         };
-        for (int i = 0; i <= 1000; ++i) {
-            double x = 1.0f * i / 1000;
+        for (int i = 0; i <= 300; ++i) {
+            double x = 1.0f * i / 300;
             double w = easeFunc(1.0 - x) * width();
             setting.move((int)w - width(), 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(1));

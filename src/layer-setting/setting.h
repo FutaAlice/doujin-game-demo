@@ -1,3 +1,13 @@
+/**
+ * @file setting.h
+ * @author FutaAlice (1611271600@qq.com)
+ * @brief 设置菜单窗体
+ * @version 0.1
+ * @date 2018-10-16
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #pragma once
 #include <QWidget>
 #include <QLabel>

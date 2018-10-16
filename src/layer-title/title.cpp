@@ -1,3 +1,13 @@
+/**
+ * @file title.cpp
+ * @author FutaAlice (1611271600@qq.com)
+ * @brief 标题画面
+ * @version 0.1
+ * @date 2018-10-16
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QResizeEvent>
@@ -56,6 +66,16 @@ Title::~Title()
 {
     delete ui_;
     delete title_gif_;
+}
+
+void Title::showBtn()
+{
+    btn_ctn_->show();
+}
+
+void Title::hideBtn()
+{
+    btn_ctn_->hide();
 }
 
 void Title::resizeEvent(QResizeEvent *e)

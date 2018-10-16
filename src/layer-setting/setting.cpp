@@ -1,3 +1,13 @@
+/**
+ * @file setting.cpp
+ * @author FutaAlice (1611271600@qq.com)
+ * @brief 设置菜单窗体
+ * @version 0.1
+ * @date 2018-10-16
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #include <QString>
 #include <QPixmap>
 #include <QResizeEvent>
@@ -54,4 +64,9 @@ void Setting::resizeEvent(QResizeEvent *e)
 {
     ui_->bg->setPixmap(QPixmap(cli::resource_dir + "/background/setting_bg.png").scaled(size()));
     ui_->bg->resize(e->size());
+    ui_->groupBox->move(
+        (e->size().width() - ui_->groupBox->size().width()) / 2,
+        (e->size().height() - ui_->groupBox->size().height()) / 2
+    );
+    ui_->btn_back->move(ui_->groupBox->geometry().bottomRight());
 }

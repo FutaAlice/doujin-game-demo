@@ -1,3 +1,13 @@
+/**
+ * @file title.h
+ * @author FutaAlice (1611271600@qq.com)
+ * @brief 标题画面
+ * @version 0.1
+ * @date 2018-10-16
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #pragma once
 #include <QLabel>
 #include <QWidget>
@@ -16,6 +26,9 @@ class TITLESHARED_EXPORT Title :
 public:
     explicit Title(QWidget *parent = nullptr);
     ~Title();
+
+    void showBtn();
+    void hideBtn();
 
 signals:
     void onSettingBtnClicked();

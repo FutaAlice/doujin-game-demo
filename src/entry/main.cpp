@@ -1,3 +1,13 @@
+/**
+ * @file main.cpp
+ * @author FutaAlice (1611271600@qq.com)
+ * @brief 程序入口点
+ * @version 0.1
+ * @date 2018-10-16
+ * 
+ * @copyright Copyright (c) 2018
+ * 
+ */
 #include <QApplication>
 #include <QWidget>
 #include <QDebug>
