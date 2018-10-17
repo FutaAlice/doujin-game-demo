@@ -28,11 +28,13 @@ protected slots:
     void changeScreenSize();
 signals:
     void sigHide();
+    void sigBackToTitle();
     void sigScreenSize(QSize);
     void sigFullScreen();
 protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void resizeEvent(QResizeEvent *);
+    virtual void mousePressEvent(QMouseEvent *);
 private:
     Ui::Setting *ui_;
 };

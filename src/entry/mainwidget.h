@@ -9,6 +9,7 @@
  * 
  */
 #pragma once
+#include <set>
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -34,23 +35,28 @@ public:
     ~MainWidget();
 
 public:
-    void setPresentWidget(Layer);
     void setSettingLayerVisible(bool);
+    void setAVGLayerVisible(bool);
 
 public slots:
+    void init();
     void setWindowSize(const QSize &);
     void setWindowSize(int w, int h);
     void setFullScreen();
     void showSettingLayer();
     void hideSettingLayer();
+    void showAVGLayer();
+    void hideAVGLayer();
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
     virtual void mousePressEvent(QMouseEvent *);
 
 private:
-    Title title { this };
-    Setting setting { this };
-    AVGLayer avg { this };
-    STGLayer stg { this };
+    Title title_ { this };
+    Setting setting_ { this };
+    AVGLayer avg_ { this };
+    STGLayer stg_ { this };
+
+    std::set<QWidget *> layers_;
 };

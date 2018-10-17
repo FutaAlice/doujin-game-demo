@@ -11,6 +11,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QResizeEvent>
+#include <QMouseEvent>
 #include <cli-args/cli.h>
 #include "setting.h"
 #include "ui_setting.h"
@@ -23,6 +24,9 @@ Setting::Setting(QWidget *parent/* = nullptr*/) :
 
     // hide setting layer
     connect(ui_->btn_back, SIGNAL(clicked()), this, SIGNAL(sigHide()));
+
+    // back to title layer
+    connect(ui_->btn_title, SIGNAL(clicked()), this, SIGNAL(sigBackToTitle()));
 
     // change window size
     connect(ui_->radio_dp_720, SIGNAL(clicked()), this, SLOT(changeScreenSize()));
@@ -68,5 +72,14 @@ void Setting::resizeEvent(QResizeEvent *e)
         (e->size().width() - ui_->groupBox->size().width()) / 2,
         (e->size().height() - ui_->groupBox->size().height()) / 2
     );
-    ui_->btn_back->move(ui_->groupBox->geometry().bottomRight());
+    ui_->btn_back->move(ui_->groupBox->geometry().bottomLeft());
+    ui_->btn_title->move(ui_->btn_back->geometry().bottomLeft());
+    ui_->btn_save->move(ui_->btn_title->geometry().bottomLeft());
+    ui_->btn_load->move(ui_->btn_save->geometry().bottomLeft());
+}
+
+void Setting::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::RightButton)
+        emit sigHide();
 }

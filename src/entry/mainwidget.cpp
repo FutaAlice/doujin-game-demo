@@ -19,26 +19,36 @@
 #include <QResizeEvent>
 #include "mainwidget.h"
 
-MainWidget::MainWidget(QWidget *parent) :
-    QWidget(parent)
+MainWidget::MainWidget(QWidget *parent)
+    : QWidget(parent)
+    , layers_ { &title_, &setting_, &avg_, &stg_ }
+
 {
-    resize(800, 600);
-    setPresentWidget(Layer::Title);
+    init();
 
     // connections with title layer
-    connect(&title, SIGNAL(onSettingBtnClicked()), this, SLOT(showSettingLayer()));
+    connect(&title_, SIGNAL(onSettingBtnClicked()), this, SLOT(showSettingLayer()));
 
     // connections with setting layer
-    connect(&setting, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
-    connect(&setting, SIGNAL(sigScreenSize(QSize)), this, SLOT(setWindowSize(QSize)));
-    connect(&setting, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
-
-    avg.raise();
-    stg.hide();
+    connect(&setting_, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
+    connect(&setting_, SIGNAL(sigScreenSize(QSize)), this, SLOT(setWindowSize(QSize)));
+    connect(&setting_, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
+    connect(&setting_, SIGNAL(sigBackToTitle()), this, SLOT(init()));
+    
 }
 
 MainWidget::~MainWidget()
 {
+}
+
+void MainWidget::init()
+{
+    setWindowSize(1280, 720);
+    for (auto x : layers_) {
+        x->hide();
+    }
+    title_.show();
+    title_.showBtn();
 }
 
 void MainWidget::setWindowSize(const QSize &size)
@@ -59,39 +69,14 @@ void MainWidget::setFullScreen()
     showFullScreen();
 }
 
-void MainWidget::setPresentWidget(Layer layer)
-{
-    static std::mutex m;
-
-    if (!m.try_lock())
-        return;
-
-    std::thread t;
-    switch (layer) {
-        case Layer::Title:
-            setPresentWidget(Layer::Null);
-            title.raise();
-            title.showBtn();
-            title.show();
-            break;
-        default:
-            break;
-    }
-    if (t.joinable()) {
-        t.detach();
-    } else {
-        m.unlock();
-    }
-}
-
 void MainWidget::setSettingLayerVisible(bool visible)
 {
     static std::mutex m;
     if (!m.try_lock())
         return;
 
-    setting.show();
-    setting.raise();
+    setting_.show();
+    setting_.raise();
     auto t = std::thread([&, visible] {
         std::lock_guard<std::mutex> lock (m, std::adopt_lock);
         auto easeFunc = [](double x) {
@@ -101,33 +86,57 @@ void MainWidget::setSettingLayerVisible(bool visible)
         for (int i = 0; i <= 300; ++i) {
             double x = 1.0f * i / 300;
             double w = easeFunc(1.0 - x) * width();
-            setting.move((int)w - (visible ? 0 : width()), 0);
+            setting_.move((int)w - (visible ? 0 : width()), 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
         if (!visible)
-            setting.hide();
+            setting_.hide();
+    });
+    t.detach();
+}
+
+void MainWidget::setAVGLayerVisible(bool visible)
+{
+    static std::mutex m;
+    if (!m.try_lock())
+        return;
+
+    avg_.show();
+    avg_.raise();
+    auto t = std::thread([&, visible] {
+        std::lock_guard<std::mutex> lock (m, std::adopt_lock);
+        if (!visible)
+            avg_.hide();
     });
     t.detach();
 }
 
 void MainWidget::showSettingLayer()
 {
-    title.hideBtn();
+    title_.hideBtn();
     setSettingLayerVisible(true);
 }
 
 void MainWidget::hideSettingLayer()
 {
-    title.showBtn();
+    title_.showBtn();
     setSettingLayerVisible(false);
+}
+
+void MainWidget::showAVGLayer()
+{
+    setAVGLayerVisible(true);
+}
+
+void MainWidget::hideAVGLayer()
+{
+    setAVGLayerVisible(false);
 }
 
 void MainWidget::resizeEvent(QResizeEvent *e)
 {
-    title.resize(e->size());
-    setting.resize(e->size());
-    avg.resize(e->size());
-    stg.resize(e->size());
+    for (auto x : layers_)
+        x->resize(e->size());
 }
 
 void MainWidget::mousePressEvent(QMouseEvent *e)

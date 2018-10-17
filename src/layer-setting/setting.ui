@@ -104,9 +104,51 @@
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_title">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>260</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;-title</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_save">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>230</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_load">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>260</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>load</string>
+   </property>
+  </widget>
   <zorder>bg</zorder>
   <zorder>btn_back</zorder>
   <zorder>groupBox</zorder>
+  <zorder>btn_title</zorder>
+  <zorder>btn_save</zorder>
+  <zorder>btn_load</zorder>
  </widget>
  <layoutdefault spacing="0" margin="0"/>
  <resources/>

@@ -10,7 +10,7 @@ AVGLayer::AVGLayer(QWidget *parent)
     , ui_(new Ui::AVGLayerClass)
 {
     ui_->setupUi(this);
-    window()->setAttribute(Qt::WA_TransparentForMouseEvents);
+    // window()->setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 AVGLayer::~AVGLayer()
@@ -32,5 +32,7 @@ void AVGLayer::resizeEvent(QResizeEvent *e)
 void AVGLayer::mousePressEvent(QMouseEvent *e)
 {
     qDebug() << "AVG layer press.";
-    QWidget::mousePressEvent(e);
+    auto area = ui_->dialog->geometry();
+    if (!area.contains(e->pos()))
+        QWidget::mousePressEvent(e);
 }
