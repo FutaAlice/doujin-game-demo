@@ -1,10 +1,8 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>STGLayerClass</class>
- <widget class="QWidget" name="STGLayerClass" >
-  <property name="objectName" >
-   <string notr="true">STGLayerClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QWidget" name="STGLayerClass">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,12 +10,24 @@
     <height>400</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>STGLayer</string>
   </property>
+  <widget class="QLabel" name="bg">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>210</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
  </widget>
- <layoutDefault spacing="0" margin="0" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="0" margin="0"/>
  <resources/>
  <connections/>
-</UI>
+</ui>

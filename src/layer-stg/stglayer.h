@@ -15,6 +15,14 @@ class STGLAYERSHARED_EXPORT STGLayer
 public:
     explicit STGLayer(QWidget *parent = nullptr);
     ~STGLayer();
+
+signals:
+    void sigCallSettingLayer();
+
+protected:
+    virtual void resizeEvent(QResizeEvent *);
+    virtual void mousePressEvent(QMouseEvent *e);
+
 private:
     Ui::STGLayerClass *ui_;
 };

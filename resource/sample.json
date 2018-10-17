@@ -1,0 +1,15 @@
+{
+    "name": "sample.png",
+    "path": "/system/sample.png",
+    "width": 1.0,
+    "height": 0.23,
+    "status": {
+        "x": 0.0,
+        "y": 0.67,
+        "opacity": 1.0
+    },
+    "fadeIn": {
+    },
+    "fadeOut": {
+    }
+}

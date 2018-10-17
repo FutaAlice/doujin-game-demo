@@ -25,6 +25,7 @@ MainWidget::MainWidget(QWidget *parent)
     // connections with title layer
     connect(&title_, SIGNAL(sigCallSettingLayer()), this, SLOT(showSettingLayer()));
     connect(&title_, SIGNAL(sigCallAVGLayer()), this, SLOT(showAVGLayer()));
+    connect(&title_, SIGNAL(sigCallSTGLayer()), this, SLOT(showSTGLayer()));
 
     // connections with setting layer
     connect(&setting_, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
@@ -34,6 +35,10 @@ MainWidget::MainWidget(QWidget *parent)
     
     // connections with AVG layer
     connect(&avg_, SIGNAL(sigCallSettingLayer()), this, SLOT(showSettingLayer()));
+
+    // connections with STG layer
+    connect(&stg_, SIGNAL(sigCallSettingLayer()), this, SLOT(showSettingLayer()));
+
 }
 
 MainWidget::~MainWidget()
@@ -97,7 +102,19 @@ void MainWidget::setAVGLayerVisible(bool visible)
     anime->setEndValue(!visible);
     anime->setEasingCurve(QEasingCurve::OutElastic);
     anime->start(QAbstractAnimation::DeleteWhenStopped);
+}
 
+void MainWidget::setSTGLayerVisible(bool visible)
+{
+    stg_.show();
+    stg_.raise();
+
+    QPropertyAnimation *anime = new QPropertyAnimation(&stg_, "windowOpacity");
+    anime->setDuration(anime_duration_);
+    anime->setStartValue(visible);
+    anime->setEndValue(!visible);
+    anime->setEasingCurve(QEasingCurve::OutElastic);
+    anime->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void MainWidget::showSettingLayer()
@@ -120,6 +137,16 @@ void MainWidget::showAVGLayer()
 void MainWidget::hideAVGLayer()
 {
     setAVGLayerVisible(false);
+}
+
+void MainWidget::showSTGLayer()
+{
+    setSTGLayerVisible(true);
+}
+
+void MainWidget::hideSTGLayer()
+{
+    setSTGLayerVisible(false);
 }
 
 void MainWidget::resizeEvent(QResizeEvent *e)

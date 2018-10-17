@@ -21,7 +21,7 @@ signals:
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
-    virtual void mousePressEvent(QMouseEvent *e);
+    virtual void mousePressEvent(QMouseEvent *);
 
 private:
     Ui::AVGLayerClass *ui_;

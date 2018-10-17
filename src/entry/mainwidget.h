@@ -37,6 +37,7 @@ public:
 public:
     void setSettingLayerVisible(bool);
     void setAVGLayerVisible(bool);
+    void setSTGLayerVisible(bool);
 
 public slots:
     void init();
@@ -47,6 +48,8 @@ public slots:
     void hideSettingLayer();
     void showAVGLayer();
     void hideAVGLayer();
+    void showSTGLayer();
+    void hideSTGLayer();
 
 protected:
     virtual void resizeEvent(QResizeEvent *);

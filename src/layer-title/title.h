@@ -33,6 +33,7 @@ public:
 signals:
     void sigCallSettingLayer();
     void sigCallAVGLayer();
+    void sigCallSTGLayer();
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
