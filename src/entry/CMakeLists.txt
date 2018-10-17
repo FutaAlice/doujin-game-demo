@@ -26,6 +26,7 @@ target_link_libraries(${PROJECT_NAME}
     cli-args
     layer-title
     layer-setting
+    layer-avg
 )
 
 if (UNIX)

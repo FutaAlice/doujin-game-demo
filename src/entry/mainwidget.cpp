@@ -26,12 +26,14 @@ MainWidget::MainWidget(QWidget *parent) :
     setPresentWidget(Layer::Title);
 
     // connections with title layer
-    connect(&title, SIGNAL(onSettingBtnClicked()), this, SLOT(presentSettingLayer()));
+    connect(&title, SIGNAL(onSettingBtnClicked()), this, SLOT(showSettingLayer()));
 
     // connections with setting layer
     connect(&setting, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
     connect(&setting, SIGNAL(sigScreenSize(QSize)), this, SLOT(setWindowSize(QSize)));
     connect(&setting, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
+
+    avg.raise();
 }
 
 MainWidget::~MainWidget()

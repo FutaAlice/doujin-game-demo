@@ -15,6 +15,7 @@
 
 #include <layer-title/title.h>
 #include <layer-setting/setting.h>
+#include <layer-avg/avglayer.h>
 
 enum class Layer {
     Title,
@@ -48,4 +49,5 @@ protected:
 private:
     Title title { this };
     Setting setting { this };
+    AVGLayer avg { this };
 };
