@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QResizeEvent>
 #include <QMouseEvent>
+#include <QTextCodec>
 #include <QPixmap>
 #include <cli-args/cli.h>
 #include "avglayer.h"
@@ -34,6 +35,7 @@ AVGLayer::AVGLayer(QWidget *parent)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextStream in(&file);
     QString line = in.readLine();
     while (!line.isNull()) {
