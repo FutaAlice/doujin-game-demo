@@ -141,11 +141,13 @@ void MainWidget::hideAVGLayer()
 
 void MainWidget::showSTGLayer()
 {
+    stg_.grabKeyboard();
     setSTGLayerVisible(true);
 }
 
 void MainWidget::hideSTGLayer()
 {
+    stg_.releaseKeyboard();
     setSTGLayerVisible(false);
 }
 
