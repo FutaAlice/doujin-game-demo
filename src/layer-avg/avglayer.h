@@ -13,7 +13,7 @@ class AVGLAYERSHARED_EXPORT AVGLayer
     Q_OBJECT
 
 public:
-    AVGLayer(QWidget *parent = nullptr);
+    explicit AVGLayer(QWidget *parent = nullptr);
     ~AVGLayer();
 
 protected:

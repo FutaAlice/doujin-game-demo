@@ -12,7 +12,7 @@ class STGLayer
     Q_OBJECT
 
 public:
-    STGLayer(QWidget *parent = nullptr);
+    explicit STGLayer(QWidget *parent = nullptr);
     ~STGLayer();
 private:
     Ui::STGLayerClass *ui_;
