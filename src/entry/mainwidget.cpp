@@ -8,12 +8,8 @@
  * @copyright Copyright (c) 2018
  * 
  */
-#include <cmath>
-#include <chrono>
-#include <thread>
-#include <mutex>
-#include <future>
 #include <QDebug>
+#include <QPropertyAnimation>
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QResizeEvent>
@@ -74,45 +70,34 @@ void MainWidget::setFullScreen()
 
 void MainWidget::setSettingLayerVisible(bool visible)
 {
-    static std::mutex m;
-    if (!m.try_lock())
-        return;
-
     setting_.show();
     setting_.raise();
-    auto t = std::thread([&, visible] {
-        std::lock_guard<std::mutex> lock (m, std::adopt_lock);
-        auto easeFunc = [](double x) {
-            return x == 0 ? 0 : x == 1 ? 1 :
-                -pow(2,10 * x - 10) * sin((x * 10 - 10.75) * ((2 * 3.14)/ 3));
-        };
-        for (int i = 0; i <= 300; ++i) {
-            double x = 1.0f * i / 300;
-            double w = easeFunc(1.0 - x) * width();
-            setting_.move((int)w - (visible ? 0 : width()), 0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        }
-        if (!visible)
-            setting_.hide();
-    });
-    t.detach();
+
+    QPoint pos[2] = {
+        { 0, 0 },
+        { width(), 0 },
+    };
+
+    auto *anime = new QPropertyAnimation(&setting_, "pos");
+    anime->setDuration(anime_duration_);
+    anime->setStartValue(pos[visible]);
+    anime->setEndValue(pos[!visible]);
+    anime->setEasingCurve(QEasingCurve::OutElastic);
+    anime->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void MainWidget::setAVGLayerVisible(bool visible)
 {
-    static std::mutex m;
-    // if (!m.try_lock())
-    //     return;
-
-    title_.setVisible(!visible);
     avg_.show();
     avg_.raise();
-    auto t = std::thread([&, visible] {
-        // std::lock_guard<std::mutex> lock (m, std::adopt_lock);
-        if (!visible)
-            avg_.hide();
-    });
-    t.detach();
+
+    QPropertyAnimation *anime = new QPropertyAnimation(&avg_, "windowOpacity");
+    anime->setDuration(anime_duration_);
+    anime->setStartValue(visible);
+    anime->setEndValue(!visible);
+    anime->setEasingCurve(QEasingCurve::OutElastic);
+    anime->start(QAbstractAnimation::DeleteWhenStopped);
+
 }
 
 void MainWidget::showSettingLayer()

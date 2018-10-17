@@ -59,4 +59,6 @@ private:
     STGLayer stg_ { this };
 
     std::set<QWidget *> layers_;
+
+    const int anime_duration_ { 300 };
 };
