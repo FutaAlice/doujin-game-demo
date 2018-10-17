@@ -1,0 +1,23 @@
+<UI version="4.0" >
+ <class>STGLayerClass</class>
+ <widget class="QWidget" name="STGLayerClass" >
+  <property name="objectName" >
+   <string notr="true">STGLayerClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>STGLayer</string>
+  </property>
+ </widget>
+ <layoutDefault spacing="0" margin="0" />
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections/>
+</UI>

@@ -27,6 +27,7 @@ target_link_libraries(${PROJECT_NAME}
     layer-title
     layer-setting
     layer-avg
+    layer-stg
 )
 
 if (UNIX)
