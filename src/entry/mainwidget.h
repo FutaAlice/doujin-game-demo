@@ -33,6 +33,7 @@ public:
 
 public:
     void setPresentWidget(Layer);
+    void showSettingLayer(bool);
 
 public slots:
     void setWindowSize(const QSize &);

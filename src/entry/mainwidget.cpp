@@ -71,25 +71,6 @@ void MainWidget::setPresentWidget(Layer layer)
             title.showBtn();
             title.show();
             break;
-        case Layer::Setting:
-            title.hideBtn();
-            setting.show();
-            setting.raise();
-            t = std::thread([&] {
-                std::lock_guard<std::mutex> lock (m, std::adopt_lock);
-                auto easeFunc = [](double x) {
-                    return x == 0 ? 0 : x == 1 ? 1 :
-                        -pow(2,10 * x - 10) * sin((x * 10 - 10.75) * ((2 * 3.14)/ 3));
-                };
-                for (int i = 0; i <= 300; ++i) {
-                    double x = 1.0f * i / 300;
-                    double w = easeFunc(1.0 - x) * width();
-                    setting.move((int)w, 0);
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-                }
-            });
-            break;
-        case Layer::Null:
         default:
             break;
     }
@@ -100,23 +81,15 @@ void MainWidget::setPresentWidget(Layer layer)
     }
 }
 
-void MainWidget::presentSettingLayer()
-{
-    setPresentWidget(Layer::Setting);
-}
-
-void MainWidget::hideSettingLayer()
+void MainWidget::showSettingLayer(bool visible)
 {
     static std::mutex m;
-
     if (!m.try_lock())
         return;
 
-    if (setting.pos() != QPoint(0, 0))
-        return;
-    
-    title.showBtn();
-    std::thread t([&] {
+    setting.show();
+    setting.raise();
+    auto t = std::thread([&, visible] {
         std::lock_guard<std::mutex> lock (m, std::adopt_lock);
         auto easeFunc = [](double x) {
             return x == 0 ? 0 : x == 1 ? 1 :
@@ -125,12 +98,25 @@ void MainWidget::hideSettingLayer()
         for (int i = 0; i <= 300; ++i) {
             double x = 1.0f * i / 300;
             double w = easeFunc(1.0 - x) * width();
-            setting.move((int)w - width(), 0);
+            setting.move((int)w - (visible ? 0 : width()), 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
-        setting.hide();
+        if (!visible)
+            setting.hide();
     });
     t.detach();
+}
+
+void MainWidget::presentSettingLayer()
+{
+    title.hideBtn();
+    showSettingLayer(true);
+}
+
+void MainWidget::hideSettingLayer()
+{
+    title.showBtn();
+    showSettingLayer(false);
 }
 
 void MainWidget::resizeEvent(QResizeEvent *e)
