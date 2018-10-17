@@ -31,7 +31,8 @@ public:
     void hideBtn();
 
 signals:
-    void onSettingBtnClicked();
+    void sigCallSettingLayer();
+    void sigCallAVGLayer();
 
 protected:
     virtual void resizeEvent(QResizeEvent *);

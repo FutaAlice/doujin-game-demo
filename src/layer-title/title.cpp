@@ -47,19 +47,27 @@ Title::Title(QWidget *parent/* = nullptr*/) :
         return btn;
     };
 
+    QPushButton *btn;
     btn_ctn_ = new QWidget(this);
     auto *btn_layout = new QVBoxLayout(btn_ctn_);
     btn_ctn_->setLayout(btn_layout);
     btn_ctn_->resize(100, 240);
 
-    btn_layout->addWidget(getTitleBtn("/button/btn_start.png", 4));
-    btn_layout->addWidget(getTitleBtn("/button/btn_continue.png", 4));
-    auto btn = getTitleBtn("/button/btn_setting.png", 4);
+    // start
+    btn = getTitleBtn("/button/btn_start.png", 4);
+    connect(btn, SIGNAL(clicked()), this, SIGNAL(sigCallAVGLayer()));
     btn_layout->addWidget(btn);
+
+    btn_layout->addWidget(getTitleBtn("/button/btn_continue.png", 4));
+
+    // setting
+    btn = getTitleBtn("/button/btn_setting.png", 4);
+    connect(btn, SIGNAL(clicked()), this, SIGNAL(sigCallSettingLayer()));
+    btn_layout->addWidget(btn);
+
     btn_layout->addWidget(getTitleBtn("/button/btn_about.png", 4));
     btn_layout->addWidget(getTitleBtn("/button/btn_debug.png", 4));
 
-    connect(btn, SIGNAL(clicked()), this, SIGNAL(onSettingBtnClicked()));
 }
 
 Title::~Title()

@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QResizeEvent>
+#include <QMouseEvent>
 #include <QPixmap>
 #include <cli-args/cli.h>
 #include "avglayer.h"
@@ -33,6 +34,11 @@ void AVGLayer::mousePressEvent(QMouseEvent *e)
 {
     qDebug() << "AVG layer press.";
     auto area = ui_->dialog->geometry();
-    if (!area.contains(e->pos()))
+    if (!area.contains(e->pos())) {
         QWidget::mousePressEvent(e);
+        return;
+    }
+
+    if (e->button() == Qt::RightButton)
+        emit sigCallSettingLayer();
 }

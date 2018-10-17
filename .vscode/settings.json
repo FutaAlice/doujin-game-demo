@@ -60,6 +60,7 @@
         "qstyleoption": "cpp",
         "future": "cpp",
         "thread": "cpp",
-        "qpixmap": "cpp"
+        "qpixmap": "cpp",
+        "qresizeevent": "cpp"
     }
 }

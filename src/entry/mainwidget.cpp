@@ -27,7 +27,8 @@ MainWidget::MainWidget(QWidget *parent)
     init();
 
     // connections with title layer
-    connect(&title_, SIGNAL(onSettingBtnClicked()), this, SLOT(showSettingLayer()));
+    connect(&title_, SIGNAL(sigCallSettingLayer()), this, SLOT(showSettingLayer()));
+    connect(&title_, SIGNAL(sigCallAVGLayer()), this, SLOT(showAVGLayer()));
 
     // connections with setting layer
     connect(&setting_, SIGNAL(sigHide()), this, SLOT(hideSettingLayer()));
@@ -35,6 +36,8 @@ MainWidget::MainWidget(QWidget *parent)
     connect(&setting_, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
     connect(&setting_, SIGNAL(sigBackToTitle()), this, SLOT(init()));
     
+    // connections with AVG layer
+    connect(&avg_, SIGNAL(sigCallSettingLayer()), this, SLOT(showSettingLayer()));
 }
 
 MainWidget::~MainWidget()
@@ -101,6 +104,7 @@ void MainWidget::setAVGLayerVisible(bool visible)
     if (!m.try_lock())
         return;
 
+    title_.setVisible(!visible);
     avg_.show();
     avg_.raise();
     auto t = std::thread([&, visible] {

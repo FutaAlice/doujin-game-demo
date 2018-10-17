@@ -16,6 +16,9 @@ public:
     explicit AVGLayer(QWidget *parent = nullptr);
     ~AVGLayer();
 
+signals:
+    void sigCallSettingLayer();
+
 protected:
     virtual void resizeEvent(QResizeEvent *);
     virtual void mousePressEvent(QMouseEvent *e);
