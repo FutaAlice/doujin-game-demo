@@ -34,6 +34,7 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(&setting, SIGNAL(sigFullScreen()), this, SLOT(setFullScreen()));
 
     avg.raise();
+    stg.hide();
 }
 
 MainWidget::~MainWidget()
@@ -127,4 +128,9 @@ void MainWidget::resizeEvent(QResizeEvent *e)
     setting.resize(e->size());
     avg.resize(e->size());
     stg.resize(e->size());
+}
+
+void MainWidget::mousePressEvent(QMouseEvent *e)
+{
+    qDebug() << "MainWidget mouse press.";
 }

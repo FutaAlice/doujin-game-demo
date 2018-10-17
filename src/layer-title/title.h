@@ -35,6 +35,7 @@ signals:
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
+    virtual void mousePressEvent(QMouseEvent *);
 
 private:
     Ui::Title *ui_;

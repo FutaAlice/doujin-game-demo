@@ -86,3 +86,8 @@ void Title::resizeEvent(QResizeEvent *e)
         (e->size().height() - btn_ctn_->size().height()) / 2
     );
 }
+
+void Title::mousePressEvent(QMouseEvent *e)
+{
+    qDebug() << "Title mouse press";
+}

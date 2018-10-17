@@ -46,6 +46,7 @@ public slots:
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
+    virtual void mousePressEvent(QMouseEvent *);
 
 private:
     Title title { this };

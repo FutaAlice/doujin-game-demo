@@ -18,6 +18,7 @@ public:
 
 protected:
     virtual void resizeEvent(QResizeEvent *);
+    virtual void mousePressEvent(QMouseEvent *e);
 
 private:
     Ui::AVGLayerClass *ui_;

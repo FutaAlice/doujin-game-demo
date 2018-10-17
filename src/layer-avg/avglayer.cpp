@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QResizeEvent>
 #include <QPixmap>
 #include <cli-args/cli.h>
@@ -9,6 +10,7 @@ AVGLayer::AVGLayer(QWidget *parent)
     , ui_(new Ui::AVGLayerClass)
 {
     ui_->setupUi(this);
+    window()->setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 AVGLayer::~AVGLayer()
@@ -25,4 +27,10 @@ void AVGLayer::resizeEvent(QResizeEvent *e)
     ui_->dialog->setPixmap(QPixmap(cli::resource_dir + "/system/avg_dialog.png").scaled(s));
     ui_->dialog->resize(s);
     ui_->dialog->move(0, e->size().height() - ui_->dialog->size().height());
+}
+
+void AVGLayer::mousePressEvent(QMouseEvent *e)
+{
+    qDebug() << "AVG layer press.";
+    QWidget::mousePressEvent(e);
 }
