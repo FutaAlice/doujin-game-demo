@@ -1,5 +1,6 @@
 #include <vector>
 #include <QDebug>
+#include <QLabel>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QPixmap>
@@ -20,13 +21,23 @@ std::vector<const char *> info {
     "TODO: 还有很多没想起来的",
 };
 
+std::vector<QLabel *> v(10);
+
 AVGLayer::AVGLayer(QWidget *parent)
     : QWidget(parent)
     , ui_(new Ui::AVGLayerClass)
 {
     ui_->setupUi(this);
+
+    // initialize character group
+    for (auto & x : v) {
+        x = new QLabel(this);
+        x->lower();
+    }
+
     // window()->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui_->text->setText(info[0]);
+    ui_->name->setText("GOD");
 }
 
 AVGLayer::~AVGLayer()
@@ -36,6 +47,10 @@ AVGLayer::~AVGLayer()
 
 void AVGLayer::resizeEvent(QResizeEvent *e)
 {
+    for (auto x : v) {
+        x->resize(width() / 6, height() * 4 / 5);
+    }
+
     QSize s(
         e->size().width(),
         e->size().height() * 2 / 7
@@ -44,7 +59,6 @@ void AVGLayer::resizeEvent(QResizeEvent *e)
     ui_->dialog->resize(s);
     ui_->dialog->move(0, e->size().height() - ui_->dialog->size().height());
 
-    ui_->name->setText("GOD");
     ui_->name->move(ui_->dialog->pos().x() + 60, ui_->dialog->pos().y() + 40);
 
     ui_->text->resize(width(), 20);
@@ -68,5 +82,11 @@ void AVGLayer::mousePressEvent(QMouseEvent *e)
             i = 0;
         }
         ui_->text->setText(info[i++]);
+
+        v[0]->setPixmap(QPixmap(cli::resource_dir + "/character/god.png").scaled(v[0]->size()));
+        v[0]->move(
+            width() / 2,
+            height() - v[0]->height()
+        );
     }
 }
