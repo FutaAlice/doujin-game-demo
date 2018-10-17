@@ -81,7 +81,7 @@ void MainWidget::setPresentWidget(Layer layer)
     }
 }
 
-void MainWidget::showSettingLayer(bool visible)
+void MainWidget::setSettingLayerVisible(bool visible)
 {
     static std::mutex m;
     if (!m.try_lock())
@@ -107,16 +107,16 @@ void MainWidget::showSettingLayer(bool visible)
     t.detach();
 }
 
-void MainWidget::presentSettingLayer()
+void MainWidget::showSettingLayer()
 {
     title.hideBtn();
-    showSettingLayer(true);
+    setSettingLayerVisible(true);
 }
 
 void MainWidget::hideSettingLayer()
 {
     title.showBtn();
-    showSettingLayer(false);
+    setSettingLayerVisible(false);
 }
 
 void MainWidget::resizeEvent(QResizeEvent *e)

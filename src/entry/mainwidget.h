@@ -33,13 +33,13 @@ public:
 
 public:
     void setPresentWidget(Layer);
-    void showSettingLayer(bool);
+    void setSettingLayerVisible(bool);
 
 public slots:
     void setWindowSize(const QSize &);
     void setWindowSize(int w, int h);
     void setFullScreen();
-    void presentSettingLayer();
+    void showSettingLayer();
     void hideSettingLayer();
 
 protected:
