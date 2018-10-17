@@ -125,4 +125,6 @@ void MainWidget::resizeEvent(QResizeEvent *e)
 {
     title.resize(e->size());
     setting.resize(e->size());
+    avg.resize(e->size());
+    stg.resize(e->size());
 }

@@ -59,6 +59,7 @@
         "qpainter": "cpp",
         "qstyleoption": "cpp",
         "future": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "qpixmap": "cpp"
     }
 }
