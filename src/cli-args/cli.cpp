@@ -33,6 +33,8 @@ bool init(int argc, char **argv)
     }
 
     cli::resource_dir = QString::fromStdString(args::get(str_resource_dir)) + "/resource";
+    cli::resource_dir.replace("\\", "/");
+
     qDebug() << "resource in folder:" << cli::resource_dir << "will be load.";
     return true;
 }
