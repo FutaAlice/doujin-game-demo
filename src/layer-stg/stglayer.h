@@ -1,12 +1,13 @@
 #pragma once
 
 #include <QWidget>
+#include "stglayer_global.h"
 
 namespace Ui {
     class STGLayerClass;
 }
 
-class STGLayer
+class STGLAYERSHARED_EXPORT STGLayer
     : public QWidget
 {
     Q_OBJECT

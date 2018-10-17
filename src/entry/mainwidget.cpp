@@ -101,14 +101,14 @@ void MainWidget::setSettingLayerVisible(bool visible)
 void MainWidget::setAVGLayerVisible(bool visible)
 {
     static std::mutex m;
-    if (!m.try_lock())
-        return;
+    // if (!m.try_lock())
+    //     return;
 
     title_.setVisible(!visible);
     avg_.show();
     avg_.raise();
     auto t = std::thread([&, visible] {
-        std::lock_guard<std::mutex> lock (m, std::adopt_lock);
+        // std::lock_guard<std::mutex> lock (m, std::adopt_lock);
         if (!visible)
             avg_.hide();
     });
