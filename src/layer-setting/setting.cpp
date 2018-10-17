@@ -66,7 +66,7 @@ void Setting::paintEvent(QPaintEvent *e)
 
 void Setting::resizeEvent(QResizeEvent *e)
 {
-    ui_->bg->setPixmap(QPixmap(cli::resource_dir + "/background/setting_bg.png").scaled(size()));
+    ui_->bg->setPixmap(QPixmap(cli::resource_dir + "/system/setting_bg.png").scaled(size()));
     ui_->bg->resize(e->size());
     ui_->groupBox->move(
         (e->size().width() - ui_->groupBox->size().width()) / 2,

@@ -26,7 +26,7 @@ Title::Title(QWidget *parent/* = nullptr*/) :
     ui_->setupUi(this);
     
     title_gif_ = new GIFLabel(this);
-    title_gif_->load(cli::resource_dir + "/background/title_background.gif");
+    title_gif_->load(cli::resource_dir + "/system/title_background.gif");
 
     auto getTitleBtn = [this](QString imgsrc, int CutSec) {
         QPushButton *btn = new QPushButton(this);
