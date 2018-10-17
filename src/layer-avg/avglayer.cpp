@@ -1,6 +1,8 @@
 #include <vector>
 #include <QDebug>
 #include <QLabel>
+#include <QFile>
+#include <QTextStream>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QPixmap>
@@ -8,19 +10,7 @@
 #include "avglayer.h"
 #include "ui_avglayer.h"
 
-std::vector<const char *> info {
-    //"测试 测试 在对话框上单击显示下一条文本",
-    //"在对话框上右击呼出设置菜单，再次右击可退出设置界面",
-    "点击设置菜单的 Title 按钮返回标题画面",
-    //"通过标题界面的 DEBUG 按钮测试 STG 层",
-    "TODO: 脚本嵌入(lua/python)",
-    "TODO: 音效播放",
-    "TODO: 物理引擎",
-    "TODO: 鼠标样式",
-    "TODO: 动画 & 特效",
-    //"TODO: 还有很多没想起来的",
-};
-
+std::vector<QString> info;
 std::vector<QLabel *> v(10);
 
 AVGLayer::AVGLayer(QWidget *parent)
@@ -36,8 +26,23 @@ AVGLayer::AVGLayer(QWidget *parent)
     }
 
     // window()->setAttribute(Qt::WA_TransparentForMouseEvents);
-    ui_->text->setText(info[0]);
     ui_->name->setText("GOD");
+
+    ui_->bg->lower();
+
+    QFile file(cli::resource_dir + "/script/drama.lua");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    QString line = in.readLine();
+    while (!line.isNull()) {
+        info.push_back(line);
+        line = in.readLine();
+    }
+
+    if (info.size() >= 1)
+        ui_->text->setText(info[0]);
 }
 
 AVGLayer::~AVGLayer()
@@ -63,6 +68,10 @@ void AVGLayer::resizeEvent(QResizeEvent *e)
 
     ui_->text->resize(width(), 20);
     ui_->text->move(ui_->dialog->pos().x() + 80, ui_->dialog->pos().y() + 80);
+
+    ui_->bg->move(0, 0);
+    ui_->bg->resize(e->size());
+    ui_->bg->setPixmap(QPixmap(cli::resource_dir + "/background/earth.png").scaled(e->size()));
 }
 
 void AVGLayer::mousePressEvent(QMouseEvent *e)
@@ -81,6 +90,8 @@ void AVGLayer::mousePressEvent(QMouseEvent *e)
         if (i >= info.size()) {
             i = 0;
         }
+        if (info.empty())
+            return;
         ui_->text->setText(info[i++]);
 
         v[0]->setPixmap(QPixmap(cli::resource_dir + "/character/god.png").scaled(v[0]->size()));
